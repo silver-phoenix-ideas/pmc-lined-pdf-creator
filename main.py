@@ -1,13 +1,15 @@
 # Imports
 import pandas
 from fpdf import FPDF
+import modules.pdf_helper as pdf_helper
 
 # Configurations
 rgb_grey = (120, 120, 120)
 rgb_white = (255, 255, 255)
 
 # Document
-pdf = FPDF("portrait", "mm", "A4")
+paper = pdf_helper.get_paper("A4")
+pdf = FPDF("portrait", "mm", paper["format"])
 pdf.set_auto_page_break(False, 0)
 pdf.set_text_color(*rgb_grey)
 
