@@ -36,9 +36,12 @@ for i, row in data.iterrows():
         pdf.set_font("Times", "B", header_font)
         pdf.cell(0, header_height, header_txt, 0, 0, "L")
 
-        draw_color = rgb.dark_grey if not j else rgb.white
+        draw_color = rgb.dark_grey if not j else rgb.light_grey
         pdf.set_draw_color(*draw_color)
         pdf.line(area["left"], area["top"], area["right"], area["top"])
+
+        # Writing Area
+        pdf_helper.draw_horizontal_lines(pdf, area, step, rgb.light_grey)
 
         # Footer
         pdf.ln(area["bottom"] - area["top"] + header_height)
