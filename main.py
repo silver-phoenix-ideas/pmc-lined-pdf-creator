@@ -1,17 +1,14 @@
 # Imports
 import pandas
 from fpdf import FPDF
+import modules.color_palette as rgb
 import modules.pdf_helper as pdf_helper
-
-# Configurations
-rgb_grey = (120, 120, 120)
-rgb_white = (255, 255, 255)
 
 # Document
 paper = pdf_helper.get_paper("A4")
 pdf = FPDF("portrait", "mm", paper["format"])
 pdf.set_auto_page_break(False, 0)
-pdf.set_text_color(*rgb_grey)
+pdf.set_text_color(*rgb.grey)
 
 # Pages
 data = pandas.read_csv("data/topics.csv")
@@ -25,7 +22,7 @@ for i, row in data.iterrows():
         pdf.set_font("Times", "B", 24)
         pdf.cell(0, 12, txt_header, 0, 1, "L")
 
-        draw_color = rgb_grey if not j else rgb_white
+        draw_color = rgb.grey if not j else rgb.white
         pdf.set_draw_color(*draw_color)
         pdf.line(10, 21, 200, 21)
 
